@@ -8,16 +8,49 @@ export const createSiteValidator = [
     .withMessage('Name must be a string')
     .trim(),
   
-  body('location')
-    .optional()
+  body('country')
+    .notEmpty()
+    .withMessage('Country is required')
     .isString()
-    .withMessage('Location must be a string')
+    .withMessage('Country must be a string')
+    .isLength({ min: 3, max: 100 })
+    .withMessage('Country must be between 3 and 100 characters')
     .trim(),
   
-  body('description')
-    .optional()
+  body('state')
+    .notEmpty()
+    .withMessage('State is required')
     .isString()
-    .withMessage('Description must be a string')
+    .withMessage('State must be a string')
+    .isLength({ min: 3, max: 100 })
+    .withMessage('State must be between 3 and 100 characters')
+    .trim(),
+  
+  body('city')
+    .notEmpty()
+    .withMessage('City is required')
+    .isString()
+    .withMessage('City must be a string')
+    .isLength({ min: 3, max: 100 })
+    .withMessage('City must be between 3 and 100 characters')
+    .trim(),
+  
+  body('address')
+    .notEmpty()
+    .withMessage('Address is required')
+    .isString()
+    .withMessage('Address must be a string')
+    .isLength({ min: 3, max: 100 })
+    .withMessage('Address must be between 3 and 100 characters')
+    .trim(),
+  
+  body('zipcode')
+    .notEmpty()
+    .withMessage('Zipcode is required')
+    .isString()
+    .withMessage('Zipcode must be a string')
+    .isLength({ min: 3, max: 100 })
+    .withMessage('Zipcode must be between 3 and 100 characters')
     .trim(),
   
   body('organizationId')
@@ -40,16 +73,44 @@ export const updateSiteValidator = [
     .withMessage('Name must be a string')
     .trim(),
   
-  body('location')
+  body('country')
     .optional()
     .isString()
-    .withMessage('Location must be a string')
+    .withMessage('Country must be a string')
+    .isLength({ min: 3, max: 100 })
+    .withMessage('Country must be between 3 and 100 characters')
     .trim(),
   
-  body('description')
+  body('state')
     .optional()
     .isString()
-    .withMessage('Description must be a string')
+    .withMessage('State must be a string')
+    .isLength({ min: 3, max: 100 })
+    .withMessage('State must be between 3 and 100 characters')
+    .trim(),
+  
+  body('city')
+    .optional()
+    .isString()
+    .withMessage('City must be a string')
+    .isLength({ min: 3, max: 100 })
+    .withMessage('City must be between 3 and 100 characters')
+    .trim(),
+  
+  body('address')
+    .optional()
+    .isString()
+    .withMessage('Address must be a string')
+    .isLength({ min: 3, max: 100 })
+    .withMessage('Address must be between 3 and 100 characters')
+    .trim(),
+  
+  body('zipcode')
+    .optional()
+    .isString()
+    .withMessage('Zipcode must be a string')
+    .isLength({ min: 3, max: 100 })
+    .withMessage('Zipcode must be between 3 and 100 characters')
     .trim(),
   
   body('organizationId')

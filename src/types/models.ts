@@ -20,15 +20,21 @@ export interface OrganizationUpdateInput {
 // Site interfaces
 export interface SiteInput {
   name: string;
-  location?: string;
-  description?: string;
+  country: string;
+  state: string;
+  city: string;
+  address: string;
+  zipcode: string;
   organizationId: string;
 }
 
 export interface SiteUpdateInput {
   name?: string;
-  location?: string;
-  description?: string;
+  country?: string;
+  state?: string;
+  city?: string;
+  address?: string;
+  zipcode?: string;
   organizationId?: string;
 }
 
