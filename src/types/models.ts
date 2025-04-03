@@ -1,12 +1,20 @@
 // Organization interfaces
 export interface OrganizationInput {
   name: string;
-  description?: string;
+  country: string;
+  state: string;
+  city: string;
+  address: string;
+  zipcode: string;
 }
 
 export interface OrganizationUpdateInput {
   name?: string;
-  description?: string;
+  country?: string;
+  state?: string;
+  city?: string;
+  address?: string;
+  zipcode?: string;
 }
 
 // Site interfaces
