@@ -48,12 +48,12 @@ model Site {
 }
 
 model MeasuringPoint {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  name        String
-  description String?
-  coordinates String? // Formato "lat,long" o similar
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  latitude  Float
+  longitude Float
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   // Relación con Site
   siteId String @db.ObjectId

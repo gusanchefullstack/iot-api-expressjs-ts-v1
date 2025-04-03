@@ -41,15 +41,15 @@ export interface SiteUpdateInput {
 // MeasuringPoint interfaces
 export interface MeasuringPointInput {
   name: string;
-  description?: string;
-  coordinates?: string;
+  latitude: number;
+  longitude: number;
   siteId: string;
 }
 
 export interface MeasuringPointUpdateInput {
   name?: string;
-  description?: string;
-  coordinates?: string;
+  latitude?: number;
+  longitude?: number;
   siteId?: string;
 }
 

@@ -8,17 +8,29 @@ export const createMeasuringPointValidator = [
     .withMessage('Name must be a string')
     .trim(),
   
-  body('description')
-    .optional()
-    .isString()
-    .withMessage('Description must be a string')
-    .trim(),
+  body('latitude')
+    .notEmpty()
+    .withMessage('Latitude is required')
+    .isFloat()
+    .withMessage('Latitude must be a number')
+    .custom(value => {
+      if (value < -90 || value > 90) {
+        throw new Error('Latitude must be between -90 and 90');
+      }
+      return true;
+    }),
   
-  body('coordinates')
-    .optional()
-    .isString()
-    .withMessage('Coordinates must be a string')
-    .trim(),
+  body('longitude')
+    .notEmpty()
+    .withMessage('Longitude is required')
+    .isFloat()
+    .withMessage('Longitude must be a number')
+    .custom(value => {
+      if (value < -180 || value > 180) {
+        throw new Error('Longitude must be between -180 and 180');
+      }
+      return true;
+    }),
   
   body('siteId')
     .notEmpty()
@@ -40,17 +52,27 @@ export const updateMeasuringPointValidator = [
     .withMessage('Name must be a string')
     .trim(),
   
-  body('description')
+  body('latitude')
     .optional()
-    .isString()
-    .withMessage('Description must be a string')
-    .trim(),
+    .isFloat()
+    .withMessage('Latitude must be a number')
+    .custom(value => {
+      if (value < -90 || value > 90) {
+        throw new Error('Latitude must be between -90 and 90');
+      }
+      return true;
+    }),
   
-  body('coordinates')
+  body('longitude')
     .optional()
-    .isString()
-    .withMessage('Coordinates must be a string')
-    .trim(),
+    .isFloat()
+    .withMessage('Longitude must be a number')
+    .custom(value => {
+      if (value < -180 || value > 180) {
+        throw new Error('Longitude must be between -180 and 180');
+      }
+      return true;
+    }),
   
   body('siteId')
     .optional()
