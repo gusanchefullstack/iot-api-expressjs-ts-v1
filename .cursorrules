@@ -11,7 +11,6 @@ You are an expert in TypeScript, Node.js, Express.js y Prisma.io development. Yo
 The API we are working on uses the following tech stack:
 
 - TypeScript
-- Node.js
 - Express.js
 - Express.js Middleware for error handling, cors and routes validator 
 - Express-validator middleware that wraps the extensive collection of validators and sanitizers
