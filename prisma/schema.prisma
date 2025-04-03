@@ -1,0 +1,90 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Organization {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relación con Sites
+  sites Site[]
+}
+
+model Site {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  location    String?
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relación con Organization
+  organizationId String       @db.ObjectId
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  // Relación con MeasuringPoints
+  measuringPoints MeasuringPoint[]
+}
+
+model MeasuringPoint {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  description String?
+  coordinates String? // Formato "lat,long" o similar
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relación con Site
+  siteId String @db.ObjectId
+  site   Site   @relation(fields: [siteId], references: [id], onDelete: Cascade)
+
+  // Relación con Boards
+  boards Board[]
+}
+
+model Board {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  serialNumber String?
+  model        String?
+  description  String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relación con MeasuringPoint
+  measuringPointId String         @db.ObjectId
+  measuringPoint   MeasuringPoint @relation(fields: [measuringPointId], references: [id], onDelete: Cascade)
+
+  // Relación con Sensors
+  sensors Sensor[]
+}
+
+model Sensor {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  type         String // Tipo de sensor (temperatura, humedad, etc.)
+  unit         String? // Unidad de medida (°C, %, etc.)
+  model        String?
+  serialNumber String?
+  description  String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relación con Board
+  boardId String @db.ObjectId
+  board   Board  @relation(fields: [boardId], references: [id], onDelete: Cascade)
+}
