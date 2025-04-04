@@ -1,4 +1,5 @@
 import { body, param } from 'express-validator';
+import { BoardStatus } from '../../types/models';
 
 export const createBoardValidator = [
   body('name')
@@ -25,6 +26,12 @@ export const createBoardValidator = [
     .isString()
     .withMessage('Description must be a string')
     .trim(),
+  
+  body('boardStatus')
+    .notEmpty()
+    .withMessage('Board status is required')
+    .isIn(Object.values(BoardStatus))
+    .withMessage('Invalid board status. Must be one of: ' + Object.values(BoardStatus).join(', ')),
   
   body('measuringPointId')
     .notEmpty()
@@ -63,6 +70,11 @@ export const updateBoardValidator = [
     .isString()
     .withMessage('Description must be a string')
     .trim(),
+  
+  body('boardStatus')
+    .optional()
+    .isIn(Object.values(BoardStatus))
+    .withMessage('Invalid board status. Must be one of: ' + Object.values(BoardStatus).join(', ')),
   
   body('measuringPointId')
     .optional()

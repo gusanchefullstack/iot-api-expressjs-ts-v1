@@ -53,12 +53,20 @@ export interface MeasuringPointUpdateInput {
   siteId?: string;
 }
 
+// Enum for BoardStatus
+export enum BoardStatus {
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+  MAINTENANCE = 'MAINTENANCE'
+}
+
 // Board interfaces
 export interface BoardInput {
   name: string;
   serialNumber?: string;
   model?: string;
   description?: string;
+  boardStatus: BoardStatus;
   measuringPointId: string;
 }
 
@@ -67,6 +75,7 @@ export interface BoardUpdateInput {
   serialNumber?: string;
   model?: string;
   description?: string;
+  boardStatus?: BoardStatus;
   measuringPointId?: string;
 }
 
