@@ -1,4 +1,5 @@
 import { body, param } from 'express-validator';
+import { SensorType } from '../../types/models';
 
 export const createSensorValidator = [
   body('name')
@@ -14,6 +15,12 @@ export const createSensorValidator = [
     .isString()
     .withMessage('Type must be a string')
     .trim(),
+  
+  body('sensorType')
+    .notEmpty()
+    .withMessage('Sensor type is required')
+    .isIn(Object.values(SensorType))
+    .withMessage('Invalid sensor type. Must be one of: ' + Object.values(SensorType).join(', ')),
   
   body('unit')
     .optional()
@@ -64,6 +71,11 @@ export const updateSensorValidator = [
     .isString()
     .withMessage('Type must be a string')
     .trim(),
+  
+  body('sensorType')
+    .optional()
+    .isIn(Object.values(SensorType))
+    .withMessage('Invalid sensor type. Must be one of: ' + Object.values(SensorType).join(', ')),
   
   body('unit')
     .optional()

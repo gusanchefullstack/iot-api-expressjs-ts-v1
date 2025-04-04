@@ -79,10 +79,20 @@ export interface BoardUpdateInput {
   measuringPointId?: string;
 }
 
+// Enum for SensorType
+export enum SensorType {
+  TEMPERATURE = 'TEMPERATURE',
+  HUMIDITY = 'HUMIDITY',
+  FLOW = 'FLOW',
+  ORP = 'ORP',
+  PH = 'PH'
+}
+
 // Sensor interfaces
 export interface SensorInput {
   name: string;
   type: string;
+  sensorType: SensorType;
   unit?: string;
   model?: string;
   serialNumber?: string;
@@ -93,6 +103,7 @@ export interface SensorInput {
 export interface SensorUpdateInput {
   name?: string;
   type?: string;
+  sensorType?: SensorType;
   unit?: string;
   model?: string;
   serialNumber?: string;

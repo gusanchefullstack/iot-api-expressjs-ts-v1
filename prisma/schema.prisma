@@ -87,16 +87,25 @@ model Board {
   sensors Sensor[]
 }
 
+enum SensorType {
+  TEMPERATURE
+  HUMIDITY
+  FLOW
+  ORP
+  PH
+}
+
 model Sensor {
-  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  id           String     @id @default(auto()) @map("_id") @db.ObjectId
   name         String
-  type         String // Tipo de sensor (temperatura, humedad, etc.)
+  type         String // Tipo de sensor (temperatura, humedad, etc.) - mantener para compatibilidad
+  sensorType   SensorType @default(TEMPERATURE) // Tipo de sensor (temperatura, humedad, etc.)
   unit         String? // Unidad de medida (°C, %, etc.)
   model        String?
   serialNumber String?
   description  String?
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
 
   // Relación con Board
   boardId String @db.ObjectId
